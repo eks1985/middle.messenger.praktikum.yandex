@@ -4,8 +4,6 @@ language: en
 meta:
   author: Kirill Efimov
   description: Chats and conversation
-scripts:
-  - ../typescript/chats.ts
 stylesheets:
   - ../scss/global.scss
   - ../scss/chats.scss
@@ -16,8 +14,13 @@ uri: /chats
 {{#extend "base"}}
   {{#content "main"}}
     <main>
-      <h1>Chats</h1>
-      <a href="./profile.hbs">Sign in</a>
+      <h1>Chats will be here</h1>
+      <div>
+        <a href="./profile.hbs">Profile</a>
+      </div>
+      <div>
+        <input type='text' name='message' />
+      </div>
     </main>
   {{/content}}
 {{/extend}}

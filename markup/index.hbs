@@ -4,8 +4,6 @@ language: en
 meta:
   author: Kirill Efimov
   description: Sign in page
-scripts:
-  - ../typescript/index.ts
 stylesheets:
   - ../scss/global.scss
   - ../scss/index.scss
@@ -17,9 +15,6 @@ uri: /
   {{#content "main"}}
     <main>
       {{> signin}}
-      <button id='clickme'>
-        Click me
-      </button>
     </main>
   {{/content}}
 {{/extend}}
