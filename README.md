@@ -6,7 +6,7 @@
 
 ## Используемые технологии
 
-- Preact для сборки проекта
+- Parcel для сборки проекта
 - Шаблонизатор handlebars
 - Postcss
 - Связь parcel и handlebars посредством плагина parcel-plugin-handlebars
