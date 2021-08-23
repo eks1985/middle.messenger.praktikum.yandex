@@ -1,0 +1,27 @@
+---
+language: en
+meta:
+  author: Kirill Efimov
+  description: 500 Internal server error
+stylesheets:
+  - ../scss/global.scss
+  - ../scss/500.scss
+title: 500 Internal server error
+uri: /500
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      <div class='form-container'>
+        <h1>500 Internal Server Error</h1>
+        <div>
+          We are already working to fix it
+        </div>
+        <div class='row'>
+          <a href="./chats.hbs">Back to chats</a>
+        </div>
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}
