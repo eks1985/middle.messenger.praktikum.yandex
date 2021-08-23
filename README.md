@@ -11,7 +11,7 @@
 
 ## UI
 
-![Пототипы экранов в Figma](https://www.figma.com/file/hvsBhCzSU14ml7HwDZmDxz/Chat-app?node-id=0%3A1)
+[Пототипы экранов в Figma](https://www.figma.com/file/hvsBhCzSU14ml7HwDZmDxz/Chat-app?node-id=0%3A1)
 
 ## Скрипты
 
