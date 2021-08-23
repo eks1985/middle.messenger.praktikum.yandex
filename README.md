@@ -2,11 +2,13 @@
 
 # Проект мессенджер обучающего курса middle-frontend от yandex
 
+[Deploy на Netlify ](https://gallant-cray-e7475b.netlify.app/)
+
 ## Используемые технологии
 
 - Preact для сборки проекта
 - Шаблонизатор handlebars
-- CSS препроцессор SCSS
+- Postcss
 - Связь parcel и handlebars посредством плагина parcel-plugin-handlebars
 
 ## UI
