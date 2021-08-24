@@ -1,0 +1,20 @@
+---
+bodyclass: index
+language: en
+meta:
+  author: Kirill Efimov
+  description: Sign in page
+stylesheets:
+  - ../css/global.css
+  - ../css/index.css
+title: Sign in
+uri: /
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      {{> signin}}
+    </main>
+  {{/content}}
+{{/extend}}

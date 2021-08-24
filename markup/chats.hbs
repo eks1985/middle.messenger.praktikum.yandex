@@ -1,0 +1,26 @@
+---
+bodyclass: chats
+language: en
+meta:
+  author: Kirill Efimov
+  description: Chats and conversation
+stylesheets:
+  - ../css/global.css
+  - ../css/chats.css
+title: Chats
+uri: /chats
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      <h1>Chats will be here</h1>
+      <div>
+        <a href="./profile.hbs">Profile</a>
+      </div>
+      <div>
+        <input type='text' name='message' />
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}

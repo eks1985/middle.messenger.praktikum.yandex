@@ -1,0 +1,24 @@
+---
+language: en
+meta:
+  author: Kirill Efimov
+  description: Missing page
+stylesheets:
+  - ../css/global.css
+  - ../css/404.css
+title: 404 Page not found
+uri: /404
+---
+
+{{#extend "base"}}
+  {{#content "main"}}
+    <main>
+      <div class='form-container'>
+        <h1>404 Page not found</h1>
+        <div>
+          <a href="./chats.hbs">Back to chats</a>
+        </div>
+      </div>
+    </main>
+  {{/content}}
+{{/extend}}
