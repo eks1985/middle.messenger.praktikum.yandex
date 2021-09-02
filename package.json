@@ -22,7 +22,8 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "handlebar": "^1.0.0"
   },
   "postcss": {
     "plugins": {

@@ -1,25 +1,21 @@
 ---
-bodyclass: index
+bodyclass: plgd
 language: en
 meta:
   author: Kirill Efimov
-  description: Sign in page
+  description: Playground
 scripts:
-  - ../scripts/index.ts
+  - ../scripts/plgd.ts
 stylesheets:
   - ../css/global.css
-  - ../css/index.css
-title: Sign in
+title: Playground
 uri: /
 ---
 
 {{#extend "base"}}
   {{#content "main"}}
     <main>
-      {{> signin}}
-      <div id='app'>
-        
-      </div>
+      <div class='app' />
     </main>
   {{/content}}
 {{/extend}}

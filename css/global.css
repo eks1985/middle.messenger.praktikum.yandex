@@ -38,10 +38,3 @@ body {
 .center {
     text-align: center;
 }
-
-::placeholder {
-    color: gray;
-  }  
-
-
-
