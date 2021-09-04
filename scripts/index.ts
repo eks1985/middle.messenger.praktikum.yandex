@@ -1,6 +1,7 @@
 import { render } from '../modules/block';
 import SignIn from '../markup/components/signin';
 import Profile from '../markup/components/profile';
+import Page404 from '../markup/components/404';
 
 console.log(window.location.pathname);
 
@@ -13,7 +14,7 @@ const getComponent = () => {
       return new Profile();
       break;
     default:
-      return new Profile();
+      return new Page404();
       break;
   }
 };
