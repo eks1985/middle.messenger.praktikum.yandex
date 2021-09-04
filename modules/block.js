@@ -43,13 +43,17 @@ class Block {
     });
   }
 
-  addChildEvents() {
-    const { chldEvents = []} = this.props;
-    chldEvents.forEach(item => {
-      const chld = document.getElementById(item.id);
-      Object.keys(item.events).forEach(eventName => {
-        chld.addEventListener(eventName, item.events[eventName]);
-      });
+  _addChildEvents() {
+    const { chld = {}} = this.props;
+    const chldKeys = Object.keys(chld);
+    chldKeys.forEach(childKey => {
+      const child = chld[childKey];
+      if (child.props.events) {
+        const childNode = document.getElementById(child.props.id);
+        Object.keys(child.props.events).forEach(eventName => {
+          childNode.addEventListener(eventName, child.props.events[eventName]);
+        });
+      }
     });
   }
 
@@ -92,7 +96,7 @@ class Block {
 
   forceUpdate() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);  
-    this.addChildEvents();
+    this._addChildEvents();
   }
 
   setProps = nextProps => {
@@ -159,8 +163,8 @@ export default Block;
 
 export function render(query, block) {
   const root = document.querySelector(query);
-
   root.appendChild(block.getContent());
+  block._addChildEvents();
   return root;
 } 
 

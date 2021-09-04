@@ -20,4 +20,3 @@ const getComponent = () => {
 
 const component = getComponent();
 render('.app', component);
-component.addChildEvents();

@@ -9,56 +9,58 @@ class UserProfile extends Block {
   constructor() {
     super('div', {
       userName: 'Kirill',
-      // events: {
-      //   click: e => this.handleClick(e),
-      // },
-      button: new Button({
-        className: 'my-class',
-        child: 'Click me 1',
-        id: 'foo',
-      }),
-      chldEvents: [
-        { 
-          id: 'foo', events: {
-            click: e => this.handleClick(e),
+      events: {
+        click: e => this.handleClickRoot(e),
+      },
+      chld: {
+        button: new Button({
+          className: 'my-class',
+          child: 'Click me 1',
+          id: 'foo',
+          events: {
+            click: e => this.handleClickButton(e),
           },
-        }
-      ],
+        }),  
+        button1: new Button({
+          className: 'my-class-1',
+          child: 'Click me 2',
+          id: 'bar',
+          events: {
+            click: e => this.handleClickButton2(e),
+          },
+        }),  
+      },
     });
   }
 
-  handleClick(e) {
-    if (e.target && e.target.id === 'foo') {
-      console.log('button click');
-      this.props.button.setProps({
-        child: 'Another label',
-      });
-      this.forceUpdate();
-      //this.addChildEvents();
-    }
+  handleClickRoot(e) {
+    console.log('click root');
   }
 
-  componentDidMount() {
-    // setTimeout(() => {
-    //   // this.props.events.click = this.handleClick;
-    //   this.props.button.setProps({
-    //     child: 'Another label',
-    //   });
-    //   // this.forceUpdate();
-    // }, 1000);
-    // this.props.events.click = this.handleClick;
-    // this.props.button.setProps({
-    //   child: 'Another label',
-    // });
-    // console.log('cdm profile');
+  handleClickButton(e) {
+    console.log('click button 1');
+    this.props.chld.button.setProps({
+      child: 'Another label 1',
+    });
+    this.forceUpdate();
   }
+
+  handleClickButton2(e) {
+    console.log('click button 2');
+    this.props.chld.button1.setProps({
+      child: 'Another label 2',
+    });
+    this.forceUpdate();
+  }
+
+  componentDidMount() {}
 
   render() {
-    console.log('render profile');
-    const btnInstance = this.props.button;
-    const button = btnInstance.render();
-    return template({ userName: this.props.userName, button });
-    //console.log('1');
+    return template({
+      userName: this.props.userName,
+      button: this.props.chld.button.render(),
+      button1: this.props.chld.button1.render(),
+    });
   }
 
 } 

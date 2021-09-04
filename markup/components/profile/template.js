@@ -8,6 +8,9 @@ export default `
     {{{ button }}}
   </div>
   <div>
+    {{{ button1 }}}
+  </div>
+  <div>
     <a href="./profile.html">Profile</a>
   </div>
 </div>
