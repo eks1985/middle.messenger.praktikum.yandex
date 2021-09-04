@@ -1,5 +1,5 @@
 export default `
-<div>
+<div class='bar'>
   User profile
   <div>
     {{ userName }}

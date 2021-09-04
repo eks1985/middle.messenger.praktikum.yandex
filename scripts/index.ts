@@ -1,23 +1,23 @@
-import signinDynamic from '../markup/components/signin/signin-dynamic';
+import { render } from '../modules/block';
+import SignIn from '../markup/components/signin';
+import Profile from '../markup/components/profile';
 
-class Component {
+console.log(window.location.pathname);
 
-  constructor() {
-    this.props = {};
+const getComponent = () => {
+  switch (window.location.pathname){
+    case '/':
+      return new SignIn();
+      break;
+    case '/foo':
+      return new Profile();
+      break;
+    default:
+      return new Profile();
+      break;
   }
+};
 
-  fetchData() {
-    this.render();
-  }
-
-  render() {
-    document.getElementById('app').innerHTML = signinDynamic({bar: 'Sign in dynamic content 1', title: { id: 888, descr: 'Click 334' } }); 
-    const btn = document.getElementById('888');
-    btn.addEventListener('click', this.fetchData.bind(this));
-  }
-
-
-}
-
-const component = new Component();
-component.render();
+const component = getComponent();
+render('.app', component);
+component.addChildEvents();

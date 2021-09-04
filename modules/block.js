@@ -40,7 +40,17 @@ class Block {
     const { events = {}} = this.props;
     Object.keys(events).forEach(eventName => {
       this._element.addEventListener(eventName, events[eventName]);
-    })
+    });
+  }
+
+  addChildEvents() {
+    const { chldEvents = []} = this.props;
+    chldEvents.forEach(item => {
+      const chld = document.getElementById(item.id);
+      Object.keys(item.events).forEach(eventName => {
+        chld.addEventListener(eventName, item.events[eventName]);
+      });
+    });
   }
 
   _removeEvents() {
@@ -82,6 +92,7 @@ class Block {
 
   forceUpdate() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);  
+    this.addChildEvents();
   }
 
   setProps = nextProps => {
@@ -97,10 +108,11 @@ class Block {
     return this._element;
   }
 
-  _render(events) {
+  _render() {
     this._element.innerHTML = this.render();
     this._removeEvents();
     this._addEvents();
+    // console.log(this._element);
   }
 
   render() {}
