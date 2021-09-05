@@ -50,9 +50,11 @@ class Block {
       const child = chld[childKey];
       if (child.props.events) {
         const childNode = document.getElementById(child.props.id);
-        Object.keys(child.props.events).forEach(eventName => {
-          childNode.addEventListener(eventName, child.props.events[eventName]);
-        });
+        if (childNode) {
+          Object.keys(child.props.events).forEach(eventName => {
+            childNode.addEventListener(eventName, child.props.events[eventName]);
+          });
+        }
       }
     });
   }

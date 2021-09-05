@@ -1,10 +1,9 @@
 import Handlebars from 'handlebars';
 import Block from '../../../modules/block';
 import Button from '../../components/button';
-// import markup from './template';
-import { template } from './template';
+import markup from './template';
 
-// const template = Handlebars.compile(markup);
+const template = Handlebars.compile(markup);
 
 class UserProfile extends Block {
   constructor() {
