@@ -9,7 +9,7 @@
   publish = "dist" 
 
 [[redirects]]
-  from = "/profile"
+  from = "/*"
   to = "/"
   status = 200
   force = false
