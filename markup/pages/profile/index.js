@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import Block from '../../../modules/block';
-import Button from '../button';
+import Button from '../../components/button';
 import markup from './template';
 
 const template = Handlebars.compile(markup);

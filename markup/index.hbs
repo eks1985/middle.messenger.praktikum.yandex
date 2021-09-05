@@ -3,18 +3,18 @@ bodyclass: index
 language: en
 meta:
   author: Kirill Efimov
-  description: Sign in page
+  description: Web messanger
 scripts:
-  - ../scripts/index.ts
+  - ../index.ts
 stylesheets:
-  - ../css/global.css
-  - ../css/index.css
-title: Sign in
+  - ../global.css
+  - ../markup/pages/profile/profile.css
+title: Web messanger
 uri: /
 ---
 
-{{#extend "base"}}
-  {{#content "main"}}
+{{#extend 'base'}}
+  {{#content 'main'}}
     <main>
       <div class='app'>
       </div>

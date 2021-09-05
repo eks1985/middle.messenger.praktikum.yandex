@@ -1,40 +1,40 @@
 <!-- Doctype HTML5 -->
 <!doctype html>
-<html dir="ltr">
-{{#block "head"}}
+<html dir='ltr'>
+{{#block 'head'}}
   <head>
-    {{#block "meta"}}
+    {{#block 'meta'}}
     {{> meta}}
     {{/block}}
 
-    {{#block "relationships"}}
+    {{#block 'relationships'}}
     {{> relationships}}
     {{/block}}
 
-    {{#block "title"}}
+    {{#block 'title'}}
     <title>{{title}}</title>
     {{/block}}
 
-    {{#block "styles"}}
+    {{#block 'styles'}}
     {{#each stylesheets}}
-    <link href="{{this}}" rel="stylesheet" />
+    <link href='{{this}}' rel='stylesheet' />
     {{/each}}
     {{/block}}
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 
   </head>
 {{/block}}
 
-{{#block "body"}}
-  <body class="{{bodyclass}}">
+{{#block 'body'}}
+  <body class='{{bodyclass}}'>
 
-    {{#block "main"}}
+    {{#block 'main'}}
     {{/block}}
 
-    {{#block "scripts"}}
+    {{#block 'scripts'}}
     {{#each scripts}}
-    <script defer src="{{this}}"></script>
+    <script defer src='{{this}}'></script>
     {{/each}}
     {{/block}}
   </body>
