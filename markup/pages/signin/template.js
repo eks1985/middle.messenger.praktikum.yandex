@@ -18,9 +18,7 @@ const markup = `
       </div>
     </div>
     <div class='row center'>
-      <button id='signin-btn'>
-        <a href='./chats'>Sign in</a>
-      </button>
+      {{{ signinButton }}}
     </div>
     <div class='row center'>
       <span>

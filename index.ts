@@ -3,25 +3,31 @@ import SignIn from './markup/pages/signin';
 import SignUp from './markup/pages/signup';
 import Chats from './markup/pages/chats';
 import Profile from './markup/pages/profile';
+import ChangePwd from './markup/pages/change-pwd';
 import Page404 from './markup/pages/404';
 import Page500 from './markup/pages/500';
 
-console.log(window.location.pathname);
+let loggedin;
+if (window.sessionStorage) {
+  loggedin = window.sessionStorage.getItem('loggedin');
+}
 
 const getComponent = () => {
   try {
     switch (window.location.pathname){
       case '/':
-        return new SignIn();
+        return loggedin ? new Chats() : new SignIn();
         break;
       case '/signup':
         return new SignUp();
         break;
       case '/chats':
-        return new Chats();
         break;
       case '/profile':
         return new Profile();
+        break;
+      case '/change-pwd':
+        return new ChangePwd();
         break;
       default:
         return new Page404();
