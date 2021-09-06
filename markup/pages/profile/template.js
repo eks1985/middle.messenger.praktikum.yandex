@@ -15,38 +15,38 @@ const markup = `
       <div class='row'>
         <div>First name</div>
         <div>
-          <input type='text' class='req-prop' name='first_name' />
+          <input type='text' class='full-width' name='first_name' />
         </div>
       </div>    
       <div class='row ml-2'>
         <div>Second name</div>
         <div>
-          <input type='text' class='req-prop' name='second_name' />
+          <input type='text' class='full-width' name='second_name' />
         </div>
       </div>    
     </div>
     <div class='row'>
       <div>Display name</div>
       <div>
-        <input type='text' class='req-prop' name='display_name' />
+        <input type='text' class='full-width' name='display_name' />
       </div>
     </div>
     <div class='row'>
       <div>Email</div>
       <div>
-        <input type='text' class='req-prop' name='email' />
+        <input type='text' class='full-width' name='email' />
       </div>
     </div>
     <div class='row'>
       <div>Login</div>
       <div>
-        <input type='text' class='req-prop' name='login' />
+        <input type='text' class='full-width' name='login' />
       </div>
     </div>
     <div class='row'>
       <div>Phone</div>
       <div>
-        <input type='text' class='req-prop' name='phone' />
+        <input type='text' class='full-width' name='phone' />
       </div>
     </div>
     <div class='row center'>

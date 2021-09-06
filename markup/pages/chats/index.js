@@ -8,6 +8,19 @@ export default class Button extends Block {
   }
 
   render() {
-    return template(this.props);
+    // console.log('template', template);
+
+    // const d = {
+    //   people: [
+    //     "Yehuda Katz",
+    //     "Alan Johnson",
+    //     "Charles Jolley",
+    //   ],
+    // }
+
+    const res = template({ ...this.props, ...data });
+    console.log('res', res);
+    //return template(this.props, { chats: data.chats });
+    return res;
   }
 }

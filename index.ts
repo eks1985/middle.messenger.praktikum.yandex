@@ -13,7 +13,7 @@ if (window.sessionStorage) {
 }
 
 const getComponent = () => {
-  try {
+  // try {
     switch (window.location.pathname){
       case '/':
         return loggedin ? new Chats() : new SignIn();
@@ -33,10 +33,16 @@ const getComponent = () => {
         return new Page404();
         break;
     }
-  } catch (error) {
-    return new Page500();  
-  }
+  // } catch (error) {
+  //   return new Page500();  
+  // }
 };
 
 const component = getComponent();
 render('.app', component);
+
+// const login = document.getElementById('login');
+// console.log(document.getElementById('foo').htmlFor);
+// const matches = document.body.querySelectorAll('[validation-required]');
+
+// console.log('matched', matches);

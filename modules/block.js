@@ -1,4 +1,5 @@
 import EventBus from './event-bus';
+import Validator from '../utilities/validator';
 
 class Block {
   static EVENTS = {
@@ -19,12 +20,15 @@ class Block {
  */
   constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
+    const validator = new Validator();
+    // console.log('validator', validator);
     this._meta = {
       tagName,
       props
     };
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
+    this.validator = () => validator;
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
@@ -159,6 +163,10 @@ class Block {
   hide() {
     this.getContent().style.display = 'none';
   }
+
+  validate() {
+    this.validator().validate();
+  }
 }
 
 export default Block;
@@ -167,6 +175,7 @@ export function render(query, block) {
   const root = document.querySelector(query);
   root.appendChild(block.getContent());
   block._addChildEvents();
+  // block.validate();
   return root;
 } 
 

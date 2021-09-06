@@ -26,10 +26,13 @@ class UserProfile extends Block {
   }
 
   handleClickButton(e) {
-    if (window.sessionStorage) {
-      window.sessionStorage.setItem('loggedin', 1);
-      window.location.reload();
-    }
+    // if (window.sessionStorage) {
+    //   window.sessionStorage.setItem('loggedin', 1);
+    //   window.location.reload();
+    // }
+    const elem = document.getElementById('login');
+    console.log('htmlfor', elem.htmlFor);
+    // console.log('123');
   }
 
   render() {

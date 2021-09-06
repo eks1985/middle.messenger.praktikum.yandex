@@ -8,13 +8,14 @@ const markup = `
     <div class='row'>
       <div>Login</div>
       <div>
-        <input type='text' class='req-prop' name='login' />
+        <input type='text' class='full-width' name='login' id='login' validation-required validation-type='login' validation-label='loginError' value='123' />
+        <label class='validation-error' id='loginError'>Validation error (restrictions: 3-20 symbols, latin, may contain digits, should have letters, no spaces, no spec symbols)</label >
       </div>
     </div>
     <div class='row'>
       <div>Password</div>
       <div>
-        <input type='text' class='req-prop' name='password' />
+        <input type='text' class='full-width' name='password' />
       </div>
     </div>
     <div class='row center'>

@@ -9,13 +9,13 @@ const markup = `
       <div class='row'>
         <div>Old password</div>
         <div>
-          <input type='text' class='req-prop' name='oldPassword' />
+          <input type='text' class='full-width' name='oldPassword' />
         </div>
       </div>    
       <div class='row ml-2'>
         <div>New password</div>
         <div>
-          <input type='text' class='req-prop' name='newPassword' />
+          <input type='text' class='full-width' name='newPassword' />
         </div>
       </div>    
     </div>

@@ -15,7 +15,7 @@ body {
     margin-top: 8px;
 }
 
-.req-prop {
+.full-width {
     width: 100%;
 }
 
@@ -37,4 +37,17 @@ body {
 
 .center {
     text-align: center;
+}
+
+.validation-error {
+    color: red;
+    font-size: 11px;
+    display: none;
+    margin-top: 2px;
+}
+
+.active.validation-error {
+    /* color: red;
+    font-size: 11px; */
+    display: block;
 }
