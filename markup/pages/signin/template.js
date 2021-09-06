@@ -1,22 +1,23 @@
 import Handlebars from 'handlebars';
 
 const markup = `
-  <div class='form-container'>
+  <form class='form-container'>
     <div class='row center'>
       <h3>Sign in</h3>
     </div>
     <div class='row'>
       <div>Login</div>
       <div>
-        <input type='text' class='full-width' name='login' id='login' validation-required validation-type='login' validation-label='loginError' value='123' />
-        <label class='validation-error' id='loginError'>Validation error (restrictions: 3-20 symbols, latin, may contain digits, should have letters, no spaces, no spec symbols)</label >
+        {{{ login }}}
       </div>
+      <label class='validation-error' id='login-error'></login>
     </div>
     <div class='row'>
       <div>Password</div>
       <div>
-        <input type='text' class='full-width' name='password' />
+        {{{ password }}}
       </div>
+      <label class='validation-error' id='password-error'></login>
     </div>
     <div class='row center'>
       {{{ signinButton }}}
@@ -27,7 +28,7 @@ const markup = `
       </span>
       <a href='./signup'>Sign up</a>
     </div>
-  </div>
+  </form>
 `;
 
 export const template = Handlebars.compile(markup);
