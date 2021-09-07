@@ -5,57 +5,62 @@ const markup = `
     <div class='row center'>
       <h3>Sign up</h3>
     </div>
-    <div class='row flex'>
-      <div class='row'>
+    <div class='row flex justify-between'>
+      <div>
         <div>First name</div>
         <div>
-          <input type='text' class='full-width'/>
+          {{{ firstName }}}
         </div>
+        <label class='validation-error' id='first-name-error'></label>
       </div>    
-      <div class='row ml-2'>
+      <div class='ml-2'>
         <div>Second name</div>
         <div>
-          <input type='text' class='full-width'/>
+          {{{ secondName }}}
         </div>
+        <label class='validation-error' id='second-name-error'></label>
       </div>    
     </div>
     <div class='row'>
       <div>Email</div>
-      <div>
-        <input type='text' class='full-width'/>
+      <div class='flex'>
+        {{{ email }}}
       </div>
+      <label class='validation-error' id='email-error'></label>
     </div>
     <div class='row'>
       <div>Login</div>
-      <div>
-        <input type='text' class='full-width'/>
+      <div class='flex'>
+        {{{ login }}}
       </div>
+      <label class='validation-error' id='login-error'></label>
     </div>
     <div class='row'>
       <div>Phone</div>
-      <div>
-        <input type='text' class='full-width'/>
+      <div class='flex'>
+        {{{ phone }}}
       </div>
+      <label class='validation-error' id='phone-error'></label>
     </div>
     <div class='row'>
       <div>Password</div>
-      <div>
-        <input type='text' class='full-width'/>
+      <div class='flex'>
+        {{{ password }}}
       </div>
+      <label class='validation-error' id='password-error'></label>
     </div>
     <div class='row'>
       <div>Repeat password</div>
-      <div>
-        <input type='text' class='full-width'/>
+      <div class='flex'>
+        {{{ repeatPassword }}}
       </div>
+      <label class='validation-error' id='repeat-password-error'></label>
     </div>
     <div class='row center'>
-      <button id='signin-btn'>
-        <a href='./profile/>Sign up</a>
-      </button>
+      {{{ saveButton }}}
     </div>
     <div class='row center'>
-      <a href='/'>Sign in</a>
+      <a href='/'>Sign In</a>
     </div>
   </div>
 `;

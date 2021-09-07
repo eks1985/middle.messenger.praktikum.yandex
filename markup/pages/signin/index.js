@@ -20,6 +20,7 @@ class SignIn extends Block {
         }),  
         login: new Input({
           id: 'login',
+          name: 'login',
           class: 'full-width',
           validation: true,
           vtype: 'login',
@@ -31,6 +32,7 @@ class SignIn extends Block {
         }),
         password: new Input({
           id: 'password',
+          name: 'password',
           class: 'full-width',
           validation: true,
           vtype: 'password',

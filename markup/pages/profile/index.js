@@ -20,7 +20,7 @@ class UserProfile extends Block {
         }),
         firstName: new Input({
           id: 'first-name',
-          name: 'first-name',
+          name: 'first_name',
           validation: true,
           vtype: 'name',
           vlabel: 'first-name-error',
@@ -31,7 +31,7 @@ class UserProfile extends Block {
         }),
         secondName: new Input({
           id: 'second-name',
-          name: 'second-name',
+          name: 'second_name',
           validation: true,
           vtype: 'name',
           vlabel: 'second-name-error',
@@ -42,6 +42,7 @@ class UserProfile extends Block {
         }),
         displayName: new Input({
           id: 'display-name',
+          name: 'display_name',
           class: 'full-width',
           validation: true,
           vtype: 'name',
@@ -53,6 +54,7 @@ class UserProfile extends Block {
         }),
         email: new Input({
           id: 'email',
+          name: 'email',
           class: 'full-width',
           validation: true,
           vtype: 'email',
@@ -64,6 +66,7 @@ class UserProfile extends Block {
         }),  
         login: new Input({
           id: 'login',
+          name: 'login',
           class: 'full-width',
           validation: true,
           vtype: 'login',
@@ -75,6 +78,7 @@ class UserProfile extends Block {
         }),
         phone: new Input({
           id: 'phone',
+          name: 'phone',
           class: 'full-width',
           validation: true,
           vtype: 'phone',
