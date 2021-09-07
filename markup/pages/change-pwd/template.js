@@ -8,24 +8,26 @@ const markup = `
     <div class='row flex'>
       <div class='row'>
         <div>Old password</div>
-        <div>
-          <input type='text' class='full-width' name='oldPassword' />
+        <div class='flex'>
+          {{{ oldPassword }}}
         </div>
-      </div>    
+        <label class='validation-error' id='old-password-error'></label>
+      </div>
       <div class='row ml-2'>
         <div>New password</div>
-        <div>
-          <input type='text' class='full-width' name='newPassword' />
+        <div class='flex'>
+          {{{ newPassword }}}
         </div>
-      </div>    
+        <label class='validation-error' id='new-password-error'></label>
+      </div>
     </div>
-    <div class='row flex justify-center'>
-      <button>
-        Update profile settings
-      </button>
-      <button class='ml-2'>
-        <a href='./profile'>Back to Profile</a>
-      </button>
+    <div class='row'>
+      <div class='row center'>
+       {{{ saveButton }}}
+      </div>
+      <div class='row center'>
+        <a href='/profile'>Back to Profile</a>
+      </div>
     </div>
   </div>
 `;
