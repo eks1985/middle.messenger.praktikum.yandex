@@ -5,27 +5,27 @@ class Validator {
     this.validationTypes = {
       name: {
         pattern: /^[A-Z][a-zA-Z-]|^[А-Я][а-яА-Я-]*$/,
-        error: 'Name error',
+        error: 'Name error (latin or cyrillic, first capital letter, no spaces and numbers, no special symbols except \'-\')',
       },
       login: {
-        pattern: /^(?=.*[a-zA-Z])([a-zA-Z0-9-]){3,20}$/,
-        error: 'Login error',
+        pattern: /^(?=.*[a-zA-Z])([a-zA-Z0-9-_]){3,20}$/,
+        error: 'Login error (3-20 symbols long, latin, may use digits, should have letters, no spaces, no special symbols except \'-, _\')',
       },
       email: {
         pattern: /.+@[^@]+[a-z]+\.[^@]{2,}$/,
-        error: 'Email error',
+        error: 'Email error (latin, special symbols and \'-\' are allowed, must have \'@\' with letters and \'.\' after that)',
       },
       password: {
         pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
-        error: 'Password error',
+        error: 'Password error (8-40 symbols long, must have capital letter and digit)',
       },
       phone: {
-        pattern: /^[+-d]?\d{3,15}$/,
-        error: 'Phone error',
+        pattern: /^[+-d]?\d{10,15}$/,
+        error: 'Phone error (10-15 symbols long, only digits, starts with \'+\')',
       },
       message: {
         pattern: /(.|\s)*\S(.|\s)*/,
-        error: 'Message error',
+        error: 'Message error (should not be empty)',
       },
     }
   }
