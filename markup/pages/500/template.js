@@ -7,7 +7,7 @@ const markup = `
       We are already working to fix it
     </div>
     <div class='row'>
-      <a href='./chats'>Back to chats</a>
+      <a href='/chats'>Back to chats</a>
     </div>
   </div>
 `;

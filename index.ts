@@ -22,6 +22,7 @@ const getComponent = () => {
         return new SignUp();
         break;
       case '/chats':
+        return loggedin ? new Chats() : new SignIn();
         break;
       case '/profile':
         return new Profile();
@@ -40,9 +41,3 @@ const getComponent = () => {
 
 const component = getComponent();
 render('.app', component);
-
-// const login = document.getElementById('login');
-// console.log(document.getElementById('foo').htmlFor);
-// const matches = document.body.querySelectorAll('[validation-required]');
-
-// console.log('matched', matches);

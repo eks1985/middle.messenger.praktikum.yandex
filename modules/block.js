@@ -175,7 +175,6 @@ export function render(query, block) {
   const root = document.querySelector(query);
   root.appendChild(block.getContent());
   block._addChildEvents();
-  // block.validate();
   return root;
 } 
 

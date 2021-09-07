@@ -59,12 +59,12 @@ class SignIn extends Block {
   }
 
   handleClickButton(e) {
-    // if (window.sessionStorage) {
-    //   window.sessionStorage.setItem('loggedin', 1);
-    //   window.location.reload();
-    // }
     e.preventDefault();
     this.validate();
+    if (window.sessionStorage) {
+      window.sessionStorage.setItem('loggedin', 1);
+      window.location.reload();
+    }
   }
 
   render() {
