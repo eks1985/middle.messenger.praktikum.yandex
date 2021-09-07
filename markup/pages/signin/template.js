@@ -17,7 +17,7 @@ const markup = `
       <div>
         {{{ password }}}
       </div>
-      <label class='validation-error' id='password-error'></login>
+      <label class='validation-error' id='password-error'></label>
     </div>
     <div class='row center'>
       {{{ signinButton }}}

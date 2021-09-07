@@ -3,7 +3,7 @@ import Button from '../../components/button';
 import Input from '../../components/input';
 import { template } from './template';
 
-class UserProfile extends Block {
+class SignIn extends Block {
   constructor() {
     super('div', {
       events: {
@@ -75,4 +75,4 @@ class UserProfile extends Block {
 
 } 
 
-export default UserProfile;
+export default SignIn;

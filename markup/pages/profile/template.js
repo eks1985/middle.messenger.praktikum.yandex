@@ -11,51 +11,55 @@ const markup = `
     <div class='row center justify-center'>
       <input name='avatar' type='file'>
     </div>
-    <div class='row flex'>
-      <div class='row'>
+    <div class='row flex justify-between'>
+      <div>
         <div>First name</div>
         <div>
-          <input type='text' class='full-width' name='first_name' />
+          {{{ firstName }}}
         </div>
+        <label class='validation-error' id='first-name-error'></label>
       </div>    
-      <div class='row ml-2'>
+      <div class='ml-2'>
         <div>Second name</div>
         <div>
-          <input type='text' class='full-width' name='second_name' />
+          {{{ secondName }}}
         </div>
+        <label class='validation-error' id='second-name-error'></label>
       </div>    
     </div>
     <div class='row'>
       <div>Display name</div>
-      <div>
-        <input type='text' class='full-width' name='display_name' />
+      <div class='flex'>
+        {{{ displayName }}}
       </div>
+      <label class='validation-error' id='display-name-error'></label>
     </div>
     <div class='row'>
       <div>Email</div>
-      <div>
-        <input type='text' class='full-width' name='email' />
+      <div class='flex'>
+        {{{ email }}}
       </div>
+      <label class='validation-error' id='email-error'></label>
     </div>
     <div class='row'>
       <div>Login</div>
-      <div>
-        <input type='text' class='full-width' name='login' />
+      <div class='flex'>
+        {{{ login }}}
       </div>
+      <label class='validation-error' id='login-error'></label>
     </div>
     <div class='row'>
       <div>Phone</div>
-      <div>
-        <input type='text' class='full-width' name='phone' />
+      <div class='flex'>
+        {{{ phone }}}
       </div>
+      <label class='validation-error' id='phone-error'></label>
     </div>
     <div class='row center'>
       <a href='./change-pwd'>Change password</a>
     </div>
     <div class='row center'>
-      <button>
-        Update profile settings
-      </button>
+      {{{ saveButton }}}
     </div>
     <div class='row center'>
       <a href='#'>Logout</a>

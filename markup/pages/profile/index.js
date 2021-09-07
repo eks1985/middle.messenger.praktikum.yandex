@@ -1,66 +1,117 @@
-import Handlebars from 'handlebars';
 import Block from '../../../modules/block';
 import Button from '../../components/button';
-// import markup from './template';
+import Input from '../../components/input';
 import { template } from './template';
-
-// const template = Handlebars.compile(markup);
 
 class UserProfile extends Block {
   constructor() {
     super('div', {
-      userName: 'Kirill',
       events: {
         click: e => this.handleClickRoot(e),
       },
       chld: {
-        button: new Button({
-          className: 'my-class',
-          child: 'Click me 1',
-          id: 'foo',
+        saveButton: new Button({
+          className: 'save-button',
+          child: 'Update profile settings',
+          id: 'update-profile-settings-button',
           events: {
             click: e => this.handleClickButton(e),
           },
-        }),  
-        button1: new Button({
-          className: 'my-class-1',
-          child: 'Click me 2',
-          id: 'bar',
+        }),
+        firstName: new Input({
+          id: 'first-name',
+          name: 'first-name',
+          validation: true,
+          vtype: 'name',
+          vlabel: 'first-name-error',
           events: {
-            click: e => this.handleClickButton2(e),
-          },
+            focus: e => this.handleFocus(e),
+            blur: e => this.handleBlur(e),
+          },  
+        }),
+        secondName: new Input({
+          id: 'second-name',
+          name: 'second-name',
+          validation: true,
+          vtype: 'name',
+          vlabel: 'second-name-error',
+          events: {
+            focus: e => this.handleFocus(e),
+            blur: e => this.handleBlur(e),
+          },  
+        }),
+        displayName: new Input({
+          id: 'display-name',
+          class: 'full-width',
+          validation: true,
+          vtype: 'name',
+          vlabel: 'display-name-error',
+          events: {
+            focus: e => this.handleFocus(e),
+            blur: e => this.handleBlur(e),
+          },  
+        }),
+        email: new Input({
+          id: 'email',
+          class: 'full-width',
+          validation: true,
+          vtype: 'email',
+          vlabel: 'email-error',
+          events: {
+            focus: e => this.handleFocus(e),
+            blur: e => this.handleBlur(e),
+          },  
         }),  
+        login: new Input({
+          id: 'login',
+          class: 'full-width',
+          validation: true,
+          vtype: 'login',
+          vlabel: 'login-error',
+          events: {
+            focus: e => this.handleFocus(e),
+            blur: e => this.handleBlur(e),
+          },  
+        }),
+        phone: new Input({
+          id: 'phone',
+          class: 'full-width',
+          validation: true,
+          vtype: 'phone',
+          vlabel: 'phone-error',
+          events: {
+            focus: e => this.handleFocus(e),
+            blur: e => this.handleBlur(e),
+          },  
+        })
       },
     });
   }
 
-  handleClickRoot(e) {
-    console.log('click root');
+  handleFocus() {
+    this.validate();
   }
+
+  handleBlur() {
+    this.validate();
+  }
+
+  handleClickRoot(e) {}
 
   handleClickButton(e) {
-    console.log('click button 1');
-    this.props.chld.button.setProps({
-      child: 'Another label 1',
-    });
-    this.forceUpdate();
+    e.preventDefault();
+    this.validate();
   }
-
-  handleClickButton2(e) {
-    console.log('click button 2');
-    this.props.chld.button1.setProps({
-      child: 'Another label 2',
-    });
-    this.forceUpdate();
-  }
-
-  componentDidMount() {}
 
   render() {
     return template({
-      userName: this.props.userName,
-      button: this.props.chld.button.render(),
-      button1: this.props.chld.button1.render(),
+      saveButton: this.props.chld.saveButton.render(),
+      firstName: this.props.chld.firstName.render(),
+      secondName: this.props.chld.secondName.render(),
+      displayName: this.props.chld.displayName.render(),
+      email: this.props.chld.email.render(),
+      login: this.props.chld.login.render(),
+      phone: this.props.chld.phone.render(),
     });
   }
 
