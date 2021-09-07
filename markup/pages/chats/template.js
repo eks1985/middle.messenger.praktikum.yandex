@@ -8,12 +8,12 @@ const markup = `
           Profile >
         </a>
       </div>
-      <div class='chats-search-container'>
-        <input type='text' class='chats-search-input' placeholder='Search' />
+      <div class='chats-input-container'>
+        <input type='text' class='chats-input' placeholder='Search' />
       </div>
       <ul class='chats-list'>
         {{#each chats}}
-          <li>
+          <li {{#if active}}class='chat-active'{{/if}}>
             <div class='chat-list-item'>
               <div class='chat-avatar-container'>
                 <div class='chat-avatar'></div>
@@ -34,8 +34,36 @@ const markup = `
       </ul>
     </div>
     <div class='conversation-container'>
-      {{#each msg}}
-      {{/each}}
+      <div>
+        <div class='chat-list-item-head'>
+          <div class='chat-avatar-container'>
+            <div class='chat-avatar'></div>
+          </div>
+          <div class='chat-list-item-1-head'>
+            <div class='chat-list-item-title'>{{ chatTitle }}</div>
+          </div>
+          <div class='chat-menu'>
+            <div class='menu-dot'></div>
+            <div class='menu-dot'></div>
+            <div class='menu-dot'></div>
+          </div>  
+        </div>
+        <div class='msg-list'>
+          {{#each msg}}
+            <div class='msg {{ flow }}'>
+              <div>
+                {{ text }}
+              </div>
+              <div class='msg-time'>
+                {{ time }} {{#if read}}<span>v<span><span class='msg-read'>V</span>{{/if}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class='chats-input-container'>
+        <input type='text' class='chats-input' placeholder='Message' />
+      </div>
     </div>
   </div>
 `;

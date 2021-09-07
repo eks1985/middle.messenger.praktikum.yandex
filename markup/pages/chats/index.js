@@ -8,6 +8,6 @@ export default class Button extends Block {
   }
 
   render() {
-    return template({ ...this.props, ...data });
+    return template({ ...this.props, ...data, chatTitle: data.chats[2].title, msg: data.chats[2].msg });
   }
 }

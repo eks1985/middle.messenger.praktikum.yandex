@@ -4,7 +4,7 @@ class Validator {
   constructor() {
     this.validationTypes = {
       name: {
-        pattern: /^[A-Z][a-zA-Z-]*$/,
+        pattern: /^[A-Z][a-zA-Z-]|^[А-Я][а-яА-Я-]*$/,
         error: 'Name error',
       },
       login: {
