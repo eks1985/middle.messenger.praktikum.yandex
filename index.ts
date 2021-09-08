@@ -5,7 +5,7 @@ import Chats from './markup/pages/chats';
 import Profile from './markup/pages/profile';
 import ChangePwd from './markup/pages/change-pwd';
 import Page404 from './markup/pages/404';
-import Page500 from './markup/pages/500';
+// import Page500 from './markup/pages/500';
 
 let loggedin;
 if (window.sessionStorage) {

@@ -16,7 +16,7 @@ class Block {
   eventBus: () => EventBus;
   validator: () => Validator;
   
-  constructor(tagName: string = 'div', props = {}) {
+  constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
     const validator = new Validator();
     // console.log('validator', validator);
@@ -85,7 +85,8 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount() {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  componentDidMount(): void {}
 
   _componentDidUpdate(oldProps, newProps) {
     
@@ -124,6 +125,7 @@ class Block {
     this._addEvents();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   render(): void {}
 
   getContent(): HTMLElement | null {

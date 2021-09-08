@@ -29,8 +29,8 @@ class HTTPTransport {
     if (typeof data !== 'object') {
       throw new Error('Data must be object');
     }
-    var str = [];
-    for (var p in data)
+    const str = [];
+    for (const p in data)
       if (data.hasOwnProperty(p)) {
         str.push(p + "=" + data[p]);
       }
@@ -69,7 +69,7 @@ class HTTPTransport {
     });
       
   };
-};
+}
 
 export default HTTPTransport;
 

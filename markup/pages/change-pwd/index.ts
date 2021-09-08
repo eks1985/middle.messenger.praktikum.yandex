@@ -52,6 +52,7 @@ class ChangePassword extends Block {
     this.validate();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   handleClickRoot(e) {}
 
   handleClickButton(e) {
