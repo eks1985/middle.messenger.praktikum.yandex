@@ -9,16 +9,14 @@ class Block {
     FLOW_CDU: 'flow:component-did-update',
   };
 
-  _element = null;
+  _element: HTMLElement | null = null;
   _meta = null;
 
-  /** JSDoc
- * @param {string} tagName
- * @param {Object} props
- *
- * @returns {void}
- */
-  constructor(tagName = 'div', props = {}) {
+  props: { [key: string]: any };
+  eventBus: () => EventBus;
+  validator: () => Validator;
+  
+  constructor(tagName: string = 'div', props = {}) {
     const eventBus = new EventBus();
     const validator = new Validator();
     // console.log('validator', validator);
@@ -26,6 +24,8 @@ class Block {
       tagName,
       props
     };
+    
+
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.validator = () => validator;
@@ -33,7 +33,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -43,7 +43,7 @@ class Block {
   _addEvents() {
     const { events = {}} = this.props;
     Object.keys(events).forEach(eventName => {
-      this._element.addEventListener(eventName, events[eventName]);
+      this._element!.addEventListener(eventName, events[eventName]);
     });
   }
 
@@ -66,7 +66,7 @@ class Block {
   _removeEvents() {
     const { events = {}} = this.props;
     Object.keys(events).forEach(eventName => {
-      this._element.removeEventListener(eventName, events[eventName]);
+      this._element!.removeEventListener(eventName, events[eventName]);
     })
   }
 
@@ -85,7 +85,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  componentDidMount(oldProps) {}
+  componentDidMount() {}
 
   _componentDidUpdate(oldProps, newProps) {
     
@@ -118,16 +118,15 @@ class Block {
     return this._element;
   }
 
-  _render() {
+  _render(): void {
     this._element.innerHTML = this.render();
     this._removeEvents();
     this._addEvents();
-    // console.log(this._element);
   }
 
-  render() {}
+  render(): void {}
 
-  getContent() {
+  getContent(): HTMLElement | null {
     return this.element;
   }
 
@@ -157,11 +156,11 @@ class Block {
   }
 
   show() {
-    this.getContent().style.display = 'block';
+    this.getContent()!.style.display = 'block';
   }
 
   hide() {
-    this.getContent().style.display = 'none';
+    this.getContent()!.style.display = 'none';
   }
 
   validate() {

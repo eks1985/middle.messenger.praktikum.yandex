@@ -19,7 +19,7 @@ class UserProfile extends Block {
           },
         }),
         firstName: new Input({
-          id: 'first-name',
+          id: 'first_name',
           name: 'first_name',
           validation: true,
           vtype: 'name',
@@ -30,7 +30,7 @@ class UserProfile extends Block {
           },  
         }),
         secondName: new Input({
-          id: 'second-name',
+          id: 'second_name',
           name: 'second_name',
           validation: true,
           vtype: 'name',
@@ -41,7 +41,7 @@ class UserProfile extends Block {
           },  
         }),
         displayName: new Input({
-          id: 'display-name',
+          id: 'display_name',
           name: 'display_name',
           class: 'full-width',
           validation: true,
@@ -105,6 +105,11 @@ class UserProfile extends Block {
   handleClickButton(e) {
     e.preventDefault();
     this.validate();
+    const formData: any = {};
+    const keys = ['first_name', 'second_name', 'display_name', 'email', 'login', 'phone'];
+    keys.forEach(key => {
+      formData[key] = document.getElementById(key)!.value;
+    });
   }
 
   render() {

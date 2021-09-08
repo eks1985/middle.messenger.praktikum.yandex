@@ -57,6 +57,11 @@ class ChangePassword extends Block {
   handleClickButton(e) {
     e.preventDefault();
     this.validate();
+    const formData: any = {};
+    const keys = ['old_password', 'new_password'];
+    keys.forEach(key => {
+      formData[key] = document.getElementById(key)!.value;
+    });
   }
 
   render() {

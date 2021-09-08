@@ -63,6 +63,9 @@ const markup = `
       </div>
       <div class='chats-input-container'>
         <input type='text' class='chats-input' placeholder='Message' />
+        <button type='button' class='chats-msg-send-button ml-1'>
+          Send
+        </button>
       </div>
     </div>
   </div>

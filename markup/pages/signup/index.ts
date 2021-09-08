@@ -19,7 +19,7 @@ class SignUp extends Block {
           },
         }),
         firstName: new Input({
-          id: 'first-name',
+          id: 'first_name',
           name: 'first_name',
           validation: true,
           vtype: 'name',
@@ -30,7 +30,7 @@ class SignUp extends Block {
           },  
         }),
         secondName: new Input({
-          id: 'second-name',
+          id: 'second_name',
           name: 'second_name',
           validation: true,
           vtype: 'name',
@@ -89,7 +89,7 @@ class SignUp extends Block {
           },  
         }),
         repeatPassword: new Input({
-          id: 'repeat-password',
+          id: 'repeat_password',
           name: 'repeat_password',
           class: 'full-width',
           validation: true,
@@ -117,6 +117,12 @@ class SignUp extends Block {
   handleClickButton(e) {
     e.preventDefault();
     this.validate();
+    const formData: any = {};
+    const keys = ['first_name', 'second_name', 'email', 'login', 'phone', 'password', 'repeat_password'];
+    keys.forEach(key => {
+      formData[key] = document.getElementById(key)!.value;
+    });
+    console.log('form data', formData);
   }
 
   render() {

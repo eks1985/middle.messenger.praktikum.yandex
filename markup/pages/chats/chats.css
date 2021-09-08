@@ -125,7 +125,7 @@
 .chats-input-container {
   display: flex;
   justify-content: center;
-  margin: 15px 0px;
+  margin: 15px 15px;
 }
 
 .chats-input {
@@ -189,4 +189,10 @@
 
 .chat-active {
   background: #eee;
+}
+
+.chats-msg-send-button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
 
 const markup = `
-  <div class='form-container'>
+  <form class='form-container'>
     <div class='row center'>
       <h3>Profile</h3>
     </div>
@@ -64,7 +64,7 @@ const markup = `
     <div class='row center'>
       <a href='#'>Logout</a>
     </div>
-  </div>
+  </form>
 `;
 
 export const template = Handlebars.compile(markup);

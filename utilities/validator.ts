@@ -37,7 +37,7 @@ class Validator {
 
   _validate(elem) {
     const vtype = this._getValidationType(elem);
-    if (!elem.value) {
+    if (!elem.value && elem.getAttribute('validation-type') !== 'message') {
       return { isValid: true, error: '' };
     }
     return {

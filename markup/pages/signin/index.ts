@@ -7,7 +7,7 @@ class SignIn extends Block {
   constructor() {
     super('div', {
       events: {
-        click: e => this.handleClickRoot(e),
+        click: (e: Event) => this.handleClickRoot(e),
       },
       chld: {
         signinButton: new Button({
@@ -15,7 +15,7 @@ class SignIn extends Block {
           child: 'Sign In',
           id: 'signin-button',
           events: {
-            click: e => this.handleClickButton(e),
+            click: (e: Event) => this.handleClickButton(e),
           },
         }),  
         login: new Input({
@@ -26,8 +26,8 @@ class SignIn extends Block {
           vtype: 'login',
           vlabel: 'login-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: (e: Event) => this.handleFocus(e),
+            blur: (e: Event) => this.handleBlur(e),
           },  
         }),
         password: new Input({
@@ -38,15 +38,15 @@ class SignIn extends Block {
           vtype: 'password',
           vlabel: 'password-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: (e: Event) => this.handleFocus(e),
+            blur: (e: Event) => this.handleBlur(e),
           },  
         })
       },
     });
   }
 
-  handleFocus() {
+  handleFocus(e: Event) {
     this.validate();
   }
 
@@ -54,15 +54,21 @@ class SignIn extends Block {
     this.validate();
   }
 
-  handleClickRoot(e) {
+  handleClickRoot(e: Event) {
     // console.log('click root', e);
   }
 
-  handleClickButton(e) {
+  
+  handleClickButton(e: Event) {
     e.preventDefault();
     this.validate();
+    const formData: any = {};
+    const keys = ['login', 'password'];
+    keys.forEach(key => {
+      formData[key] = document.getElementById(key)!.value;
+    });
     if (window.sessionStorage) {
-      window.sessionStorage.setItem('loggedin', 1);
+      window.sessionStorage.setItem('loggedin', '1');
       window.location.reload();
     }
   }
