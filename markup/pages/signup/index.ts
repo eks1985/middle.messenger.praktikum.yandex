@@ -1,7 +1,7 @@
 import Block from '../../../modules/block';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import { template } from './template';
+import { template } from './templatetjs';
 
 class SignUp extends Block {
   constructor() {
