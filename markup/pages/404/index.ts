@@ -6,7 +6,7 @@ export default class Button extends Block {
     super('div');
   }
 
-  render(): void {
+  render(): HTMLElement {
     return template();
   }
 }

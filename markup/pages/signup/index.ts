@@ -6,16 +6,13 @@ import { template } from './template';
 class SignUp extends Block {
   constructor() {
     super('div', {
-      events: {
-        click: e => this.handleClickRoot(e),
-      },
       chld: {
         saveButton: new Button({
           className: 'save-button',
           child: 'Sign Up',
           id: 'sign-up-button',
           events: {
-            click: e => this.handleClickButton(e),
+            click: (e: Event) => this.handleClickButton(e),
           },
         }),
         firstName: new Input({
@@ -25,8 +22,8 @@ class SignUp extends Block {
           vtype: 'name',
           vlabel: 'first-name-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         secondName: new Input({
@@ -36,8 +33,8 @@ class SignUp extends Block {
           vtype: 'name',
           vlabel: 'second-name-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         email: new Input({
@@ -48,8 +45,8 @@ class SignUp extends Block {
           vtype: 'email',
           vlabel: 'email-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),  
         login: new Input({
@@ -60,8 +57,8 @@ class SignUp extends Block {
           vtype: 'login',
           vlabel: 'login-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         phone: new Input({
@@ -72,8 +69,8 @@ class SignUp extends Block {
           vtype: 'phone',
           vlabel: 'phone-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }), 
         password: new Input({
@@ -84,8 +81,8 @@ class SignUp extends Block {
           vtype: 'password',
           vlabel: 'password-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         repeatPassword: new Input({
@@ -96,29 +93,34 @@ class SignUp extends Block {
           vtype: 'password',
           vlabel: 'repeat-password-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         })
       },
     });
   }
 
-  handleFocus() {
+  handleFocus(): void {
     this.validate();
   }
 
-  handleBlur() {
+  handleBlur(): void {
     this.validate();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  handleClickRoot(e) {}
-
-  handleClickButton(e) {
+  handleClickButton(e: Event): void {
     e.preventDefault();
     this.validate();
-    const formData: any = {};
+    const formData: {
+      first_name?: string,
+      second_name?: string,
+      email?: string,
+      login?: string,
+      phone?: string,
+      password?: string,
+      repeat_password?: string,
+    } = {};
     const keys = ['first_name', 'second_name', 'email', 'login', 'phone', 'password', 'repeat_password'];
     keys.forEach(key => {
       const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
@@ -127,7 +129,7 @@ class SignUp extends Block {
     console.log('form data', formData);
   }
 
-  render() {
+  render(): HTMLElement {
     return template({
       saveButton: this.props.chld.saveButton.render(),
       firstName: this.props.chld.firstName.render(),

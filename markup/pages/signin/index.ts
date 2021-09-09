@@ -69,7 +69,7 @@ class SignIn extends Block {
     }
   }
 
-  render(): void {
+  render(): HTMLElement {
     return template({
       signinButton: this.props.chld.signinButton.render(),
       login: this.props.chld.login.render(),
