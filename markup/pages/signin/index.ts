@@ -6,9 +6,6 @@ import { template } from './template';
 class SignIn extends Block {
   constructor() {
     super('div', {
-      events: {
-        click: (e: Event) => this.handleClickRoot(e),
-      },
       chld: {
         signinButton: new Button({
           className: 'signin-button',
@@ -26,8 +23,8 @@ class SignIn extends Block {
           vtype: 'login',
           vlabel: 'login-error',
           events: {
-            focus: (e: Event) => this.handleFocus(e),
-            blur: (e: Event) => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         password: new Input({
@@ -38,34 +35,33 @@ class SignIn extends Block {
           vtype: 'password',
           vlabel: 'password-error',
           events: {
-            focus: (e: Event) => this.handleFocus(e),
-            blur: (e: Event) => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         })
       },
     });
   }
 
-  handleFocus(e: Event) {
+  handleFocus(): void {
     this.validate();
   }
 
-  handleBlur() {
+  handleBlur(): void {
     this.validate();
   }
 
-  handleClickRoot(e: Event) {
-    // console.log('click root', e);
-  }
-
-  
-  handleClickButton(e: Event) {
+  handleClickButton(e: Event): void {
     e.preventDefault();
     this.validate();
-    const formData: any = {};
+    const formData: {
+      login?: string,
+      password?: string,
+    } = {};
     const keys = ['login', 'password'];
     keys.forEach(key => {
-      formData[key] = document.getElementById(key)!.value;
+      const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
+      formData[key] = inputValue;
     });
     if (window.sessionStorage) {
       window.sessionStorage.setItem('loggedin', '1');
@@ -73,7 +69,7 @@ class SignIn extends Block {
     }
   }
 
-  render() {
+  render(): void {
     return template({
       signinButton: this.props.chld.signinButton.render(),
       login: this.props.chld.login.render(),

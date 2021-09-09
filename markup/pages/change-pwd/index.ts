@@ -61,7 +61,8 @@ class ChangePassword extends Block {
     const formData: any = {};
     const keys = ['old_password', 'new_password'];
     keys.forEach(key => {
-      formData[key] = document.getElementById(key)!.value;
+      const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
+      formData[key] = inputValue;
     });
   }
 

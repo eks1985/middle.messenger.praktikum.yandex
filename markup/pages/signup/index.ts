@@ -1,7 +1,7 @@
 import Block from '../../../modules/block';
 import Button from '../../components/button';
 import Input from '../../components/input';
-import { template } from './templatetjs';
+import { template } from './template';
 
 class SignUp extends Block {
   constructor() {
@@ -121,7 +121,8 @@ class SignUp extends Block {
     const formData: any = {};
     const keys = ['first_name', 'second_name', 'email', 'login', 'phone', 'password', 'repeat_password'];
     keys.forEach(key => {
-      formData[key] = document.getElementById(key)!.value;
+      const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
+      formData[key] = inputValue;
     });
     console.log('form data', formData);
   }

@@ -109,7 +109,8 @@ class UserProfile extends Block {
     const formData: any = {};
     const keys = ['first_name', 'second_name', 'display_name', 'email', 'login', 'phone'];
     keys.forEach(key => {
-      formData[key] = document.getElementById(key)!.value;
+      const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
+      formData[key] = inputValue;
     });
   }
 
