@@ -24,7 +24,7 @@ class Block {
   };
 
   _element: HTMLElement | null = null;
-  _meta: Meta | null = null;
+  readonly _meta: Meta | null = null;
 
   props: Props;
   eventBus: () => EventBus;
@@ -45,14 +45,14 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: EventBus): void {
+  private _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _addEvents(): void {
+  private _addEvents(): void {
     const { events = {}} = this.props;
     Object.keys(events).forEach(eventName => {
       if (this._element) {
@@ -61,7 +61,7 @@ class Block {
     });
   }
 
-  _addChildEvents(): void {
+  addChildEvents(): void {
     const { chld = {}} = this.props;
     const chldKeys = Object.keys(chld);
     chldKeys.forEach(childKey => {
@@ -86,7 +86,7 @@ class Block {
     })
   }
 
-  _createResources(): void {
+  private _createResources(): void {
     if (this._meta) {
       const { tagName } = this._meta;
       this._element = this._createDocumentElement(tagName);
@@ -98,7 +98,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidMount(): void {
+  private _componentDidMount(): void {
     this.componentDidMount();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
@@ -106,7 +106,7 @@ class Block {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   componentDidMount(): void {}
 
-  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): void {
+  private _componentDidUpdate(oldProps: Props, newProps: Props): void {
     
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
@@ -115,16 +115,16 @@ class Block {
 
   }
 
-  componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): boolean {
+  componentDidUpdate(oldProps: Props, newProps: Props): boolean {
     return true;
   }
 
   forceUpdate(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);  
-    this._addChildEvents();
+    this.addChildEvents();
   }
 
-  setProps = (nextProps: Record<string, any>): void | undefined => {
+  setProps = (nextProps: Props): void | undefined => {
     if (!nextProps) {
       return;
     }
@@ -137,7 +137,7 @@ class Block {
     return this._element;
   }
 
-  _render(): void {
+  private _render(): void {
     if (this._element) {
       this._element.innerHTML = this.render();
     }
@@ -152,16 +152,16 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  private _makePropsProxy(props: Props): any {
     const proxyData = new Proxy(props, {
-      get(target, prop) {
+      get(target: Record<string, any>, prop: string) {
         if (typeof prop === 'string' && prop.startsWith('_')) {
           throw new Error('Нет доступа');
         }
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set(target: Record<string, any>, prop: string, value) {
         target[prop] = value;
         return true;
       },
@@ -173,7 +173,7 @@ class Block {
     return proxyData;
   }
 
-  _createDocumentElement(tagName: string): HTMLElement {
+  private _createDocumentElement(tagName: string): HTMLElement {
     return document.createElement(tagName);
   }
 
@@ -206,7 +206,7 @@ export function render(query: string, block: Block): void {
       root.appendChild(content);
     }
   }
-  block._addChildEvents();
+  block.addChildEvents();
 } 
 
 
