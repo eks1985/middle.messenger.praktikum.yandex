@@ -1,8 +1,22 @@
 import EventBus from './event-bus';
 import Validator from '../utilities/validator';
 
+type Meta = {
+  tagName: string,
+  props: Record<string, any>,
+}
+
+type Props = Record<string, any>;
+
+type Events = {
+  INIT: string,
+  FLOW_CDM: string,
+  FLOW_RENDER: string,
+  FLOW_CDU: string,
+}
+
 class Block {
-  static EVENTS = {
+  static EVENTS: Events = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_RENDER: 'flow:render',
@@ -10,22 +24,20 @@ class Block {
   };
 
   _element: HTMLElement | null = null;
-  _meta = null;
+  _meta: Meta | null = null;
 
-  props: { [key: string]: any };
+  props: Props;
   eventBus: () => EventBus;
   validator: () => Validator;
-  
+
   constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
     const validator = new Validator();
-    // console.log('validator', validator);
     this._meta = {
       tagName,
       props
     };
     
-
     this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
     this.validator = () => validator;
@@ -33,21 +45,23 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: EventBus) {
+  _registerEvents(eventBus: EventBus): void {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _addEvents() {
+  _addEvents(): void {
     const { events = {}} = this.props;
     Object.keys(events).forEach(eventName => {
-      this._element!.addEventListener(eventName, events[eventName]);
+      if (this._element) {
+        this._element.addEventListener(eventName, events[eventName]);
+      }
     });
   }
 
-  _addChildEvents() {
+  _addChildEvents(): void {
     const { chld = {}} = this.props;
     const chldKeys = Object.keys(chld);
     chldKeys.forEach(childKey => {
@@ -63,24 +77,28 @@ class Block {
     });
   }
 
-  _removeEvents() {
+  _removeEvents(): void {
     const { events = {}} = this.props;
     Object.keys(events).forEach(eventName => {
-      this._element!.removeEventListener(eventName, events[eventName]);
+      if (this._element) {
+        this._element.removeEventListener(eventName, events[eventName]);
+      }
     })
   }
 
-  _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+  _createResources(): void {
+    if (this._meta) {
+      const { tagName } = this._meta;
+      this._element = this._createDocumentElement(tagName);
+    }
   }
 
-  init() {
+  init(): void {
     this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidMount() {
+  _componentDidMount(): void {
     this.componentDidMount();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
@@ -88,7 +106,7 @@ class Block {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   componentDidMount(): void {}
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): void {
     
     const response = this.componentDidUpdate(oldProps, newProps);
     if (response) {
@@ -97,16 +115,16 @@ class Block {
 
   }
 
-  componentDidUpdate(oldProps, newProps) {
+  componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>): boolean {
     return true;
   }
 
-  forceUpdate() {
+  forceUpdate(): void {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);  
     this._addChildEvents();
   }
 
-  setProps = nextProps => {
+  setProps = (nextProps: Record<string, any>): void | undefined => {
     if (!nextProps) {
       return;
     }
@@ -115,18 +133,20 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU);
   };
 
-  get element() {
+  get element(): HTMLElement | null {
     return this._element;
   }
 
   _render(): void {
-    this._element.innerHTML = this.render();
+    if (this._element) {
+      this._element.innerHTML = this.render();
+    }
     this._removeEvents();
     this._addEvents();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  render(): void {}
+  render() {}
 
   getContent(): HTMLElement | null {
     return this.element;
@@ -135,7 +155,7 @@ class Block {
   _makePropsProxy(props) {
     const proxyData = new Proxy(props, {
       get(target, prop) {
-        if (prop.startsWith('_')) {
+        if (typeof prop === 'string' && prop.startsWith('_')) {
           throw new Error('Нет доступа');
         }
         const value = target[prop];
@@ -153,30 +173,40 @@ class Block {
     return proxyData;
   }
 
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string): HTMLElement {
     return document.createElement(tagName);
   }
 
-  show() {
-    this.getContent()!.style.display = 'block';
+  show(): void {
+    const elem = this.getContent();
+    if (elem) {
+      elem.style.display = 'block';
+    }
   }
 
-  hide() {
-    this.getContent()!.style.display = 'none';
+  hide(): void {
+    const elem = this.getContent();
+    if (elem) {
+      elem.style.display = 'none';
+    }
   }
 
-  validate() {
+  validate(): void {
     this.validator().validate();
   }
 }
 
 export default Block;
 
-export function render(query, block) {
+export function render(query: string, block: Block): void {
   const root = document.querySelector(query);
-  root.appendChild(block.getContent());
+  if (root) {
+    const content = block.getContent();
+    if (content) {
+      root.appendChild(content);
+    }
+  }
   block._addChildEvents();
-  return root;
 } 
 
 
