@@ -1,7 +1,11 @@
-@page-backgground: #fafafa;
+@page-background: #fafafa;
+@primary-color: #E1001A;
+@primary-color-highligth: #e53935;
+@white-label-color: #fafafa;
+@label-color: #555;
 
 body {
-  background-color: @page-backgground;
+  background-color: @page-background;
   font-family: 'Roboto';
 }
 
@@ -45,12 +49,28 @@ body {
   margin-left: 16px;
 }
 
+.mt1 {
+  margin-top: 8px;
+}
+
+.mt-2 {
+  margin-top: 16px;
+}
+
+.pl-1 {
+  padding-left: 8px;
+}
+
+.pl-2 {
+  padding-left: 16px;
+}
+
 .center {
   text-align: center;
 }
 
 .validation-error {
-  color: red;
+  color: @primary-color;
   font-size: 11px;
   display: none;
   margin-top: 2px;
@@ -58,4 +78,44 @@ body {
 
 .active.validation-error {
   display: block;
+}
+
+.form-input {
+  margin-top: 2px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.label {
+  color: @label-color;
+}
+
+.link {
+  color: @primary-color;
+}
+
+.link:visited {
+  color: @primary-color;
+}
+
+.choice-file {
+  color: @primary-color;
+  text-align:center;
+  cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+input[type=file]::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.hide-file {
+  visibility: hidden;
+}
+
+.select-avatar-label {
+  cursor: pointer;
 }

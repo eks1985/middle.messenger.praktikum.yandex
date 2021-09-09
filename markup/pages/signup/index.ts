@@ -8,7 +8,7 @@ class SignUp extends Block {
     super('div', {
       chld: {
         saveButton: new Button({
-          className: 'save-button',
+          className: 'primary-button mt-2',
           child: 'Sign Up',
           id: 'sign-up-button',
           events: {
@@ -18,6 +18,7 @@ class SignUp extends Block {
         firstName: new Input({
           id: 'first_name',
           name: 'first_name',
+          class: 'form-input',
           validation: true,
           vtype: 'name',
           vlabel: 'first-name-error',
@@ -29,6 +30,7 @@ class SignUp extends Block {
         secondName: new Input({
           id: 'second_name',
           name: 'second_name',
+          class: 'form-input',
           validation: true,
           vtype: 'name',
           vlabel: 'second-name-error',
@@ -40,7 +42,7 @@ class SignUp extends Block {
         email: new Input({
           id: 'email',
           name: 'email',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'email',
           vlabel: 'email-error',
@@ -52,7 +54,7 @@ class SignUp extends Block {
         login: new Input({
           id: 'login',
           name: 'login',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'login',
           vlabel: 'login-error',
@@ -64,7 +66,7 @@ class SignUp extends Block {
         phone: new Input({
           id: 'phone',
           name: 'phone',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'phone',
           vlabel: 'phone-error',
@@ -76,7 +78,7 @@ class SignUp extends Block {
         password: new Input({
           id: 'password',
           name: 'password',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'password',
           vlabel: 'password-error',
@@ -88,7 +90,7 @@ class SignUp extends Block {
         repeatPassword: new Input({
           id: 'repeat_password',
           name: 'repeat_password',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'password',
           vlabel: 'repeat-password-error',

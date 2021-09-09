@@ -8,7 +8,7 @@ class UserProfile extends Block {
     super('div', {
       chld: {
         saveButton: new Button({
-          className: 'save-button',
+          className: 'primary-button mt-2',
           child: 'Update profile settings',
           id: 'update-profile-settings-button',
           events: {
@@ -18,6 +18,7 @@ class UserProfile extends Block {
         firstName: new Input({
           id: 'first_name',
           name: 'first_name',
+          class: 'form-input',
           validation: true,
           vtype: 'name',
           vlabel: 'first-name-error',
@@ -29,6 +30,7 @@ class UserProfile extends Block {
         secondName: new Input({
           id: 'second_name',
           name: 'second_name',
+          class: 'form-input',
           validation: true,
           vtype: 'name',
           vlabel: 'second-name-error',
@@ -40,7 +42,7 @@ class UserProfile extends Block {
         displayName: new Input({
           id: 'display_name',
           name: 'display_name',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'name',
           vlabel: 'display-name-error',
@@ -52,7 +54,7 @@ class UserProfile extends Block {
         email: new Input({
           id: 'email',
           name: 'email',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'email',
           vlabel: 'email-error',
@@ -64,7 +66,7 @@ class UserProfile extends Block {
         login: new Input({
           id: 'login',
           name: 'login',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'login',
           vlabel: 'login-error',
@@ -76,7 +78,7 @@ class UserProfile extends Block {
         phone: new Input({
           id: 'phone',
           name: 'phone',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'phone',
           vlabel: 'phone-error',

@@ -8,7 +8,7 @@ class ChangePassword extends Block {
     super('div', {
       chld: {
         saveButton: new Button({
-          className: 'save-button',
+          className: 'primary-button',
           child: 'Update profile settings',
           id: 'update-profile-settings-button',
           events: {
@@ -16,8 +16,9 @@ class ChangePassword extends Block {
           },
         }),
         oldPassword: new Input({
-          id: 'old-password',
+          id: 'old_password',
           name: 'old_password',
+          class: 'form-input',
           validation: true,
           vtype: 'password',
           vlabel: 'old-password-error',
@@ -27,8 +28,9 @@ class ChangePassword extends Block {
           },  
         }),
         newPassword: new Input({
-          id: 'new-password',
+          id: 'new_password',
           name: 'new_password',
+          class: 'form-input',
           validation: true,
           vtype: 'password',
           vlabel: 'new-password-error',

@@ -8,7 +8,7 @@ class SignIn extends Block {
     super('div', {
       chld: {
         signinButton: new Button({
-          className: 'signin-button',
+          className: 'primary-button mt-2',
           child: 'Sign In',
           id: 'signin-button',
           events: {
@@ -18,7 +18,7 @@ class SignIn extends Block {
         login: new Input({
           id: 'login',
           name: 'login',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'login',
           vlabel: 'login-error',
@@ -30,7 +30,7 @@ class SignIn extends Block {
         password: new Input({
           id: 'password',
           name: 'password',
-          class: 'full-width',
+          class: 'full-width form-input',
           validation: true,
           vtype: 'password',
           vlabel: 'password-error',

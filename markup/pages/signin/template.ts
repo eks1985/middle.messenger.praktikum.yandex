@@ -6,14 +6,14 @@ const markup = `
       <h3>Sign in</h3>
     </div>
     <div class='row'>
-      <div>Login</div>
+      <div class='label'>Login</div>
       <div>
         {{{ login }}}
       </div>
       <label class='validation-error' id='login-error'></login>
     </div>
     <div class='row'>
-      <div>Password</div>
+      <div class='label'>Password</div>
       <div>
         {{{ password }}}
       </div>
@@ -26,7 +26,7 @@ const markup = `
       <span>
         Don't have an account yet?
       </span>
-      <a href='./signup'>Sign up</a>
+      <a class='link' href='/signup'>Sign up</a>
     </div>
   </form>
 `;
