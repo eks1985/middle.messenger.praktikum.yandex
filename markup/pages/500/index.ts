@@ -2,11 +2,11 @@ import Block from '../../../modules/block';
 import { template } from './template';
 
 export default class Button extends Block {
-  constructor(props) {
-    super('div', props);
+  constructor() {
+    super('div');
   }
 
-  render() {
-    return template(this.props);
+  render(): void {
+    return template();
   }
 }

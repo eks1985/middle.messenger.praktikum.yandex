@@ -7,6 +7,6 @@ export default class Button extends Block {
   }
 
   render(): void {
-    return template(this.props);
+    return template();
   }
 }

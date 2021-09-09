@@ -6,16 +6,13 @@ import { template } from './template';
 class ChangePassword extends Block {
   constructor() {
     super('div', {
-      events: {
-        click: e => this.handleClickRoot(e),
-      },
       chld: {
         saveButton: new Button({
           className: 'save-button',
           child: 'Update profile settings',
           id: 'update-profile-settings-button',
           events: {
-            click: e => this.handleClickButton(e),
+            click: (e: Event) => this.handleClickButton(e),
           },
         }),
         oldPassword: new Input({
@@ -25,8 +22,8 @@ class ChangePassword extends Block {
           vtype: 'password',
           vlabel: 'old-password-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         newPassword: new Input({
@@ -36,29 +33,29 @@ class ChangePassword extends Block {
           vtype: 'password',
           vlabel: 'new-password-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         })
       },
     });
   }
 
-  handleFocus() {
+  handleFocus(): void {
     this.validate();
   }
 
-  handleBlur() {
+  handleBlur(): void {
     this.validate();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  handleClickRoot(e) {}
-
-  handleClickButton(e) {
+  handleClickButton(e: Event): void {
     e.preventDefault();
     this.validate();
-    const formData: any = {};
+    const formData: {
+      old_password?: string,
+      new_password?: string,
+    } = {};
     const keys = ['old_password', 'new_password'];
     keys.forEach(key => {
       const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
@@ -66,7 +63,7 @@ class ChangePassword extends Block {
     });
   }
 
-  render() {
+  render(): HTMLElement {
     return template({
       saveButton: this.props.chld.saveButton.render(),
       oldPassword: this.props.chld.oldPassword.render(),

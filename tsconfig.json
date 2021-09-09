@@ -8,6 +8,8 @@
     "sourceMap": true,
     "paths": {
       "handlebars": ["."]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 } 

@@ -3,11 +3,16 @@ import { template } from './template';
 import data from '../../data/dummy-data.json';
 
 export default class Button extends Block {
-  constructor(props) {
-    super('div', props);
+  constructor() {
+    super('div');
   }
 
-  render() {
-    return template({ ...this.props, ...data, chatTitle: data.chats[2].title, msg: data.chats[2].msg });
+  render(): HTMLElement {
+    return template({
+      ...this.props,
+      ...data, // used ex example
+      chatTitle: data.chats[2].title, // used ex example
+      msg: data.chats[2].msg // used ex example
+    });
   }
 }

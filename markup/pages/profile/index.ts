@@ -6,16 +6,13 @@ import { template } from './template';
 class UserProfile extends Block {
   constructor() {
     super('div', {
-      events: {
-        click: e => this.handleClickRoot(e),
-      },
       chld: {
         saveButton: new Button({
           className: 'save-button',
           child: 'Update profile settings',
           id: 'update-profile-settings-button',
           events: {
-            click: e => this.handleClickButton(e),
+            click: (e: Event) => this.handleClickButton(e),
           },
         }),
         firstName: new Input({
@@ -25,8 +22,8 @@ class UserProfile extends Block {
           vtype: 'name',
           vlabel: 'first-name-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         secondName: new Input({
@@ -36,8 +33,8 @@ class UserProfile extends Block {
           vtype: 'name',
           vlabel: 'second-name-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         displayName: new Input({
@@ -48,8 +45,8 @@ class UserProfile extends Block {
           vtype: 'name',
           vlabel: 'display-name-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         email: new Input({
@@ -60,8 +57,8 @@ class UserProfile extends Block {
           vtype: 'email',
           vlabel: 'email-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),  
         login: new Input({
@@ -72,8 +69,8 @@ class UserProfile extends Block {
           vtype: 'login',
           vlabel: 'login-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: () => this.handleBlur(),
           },  
         }),
         phone: new Input({
@@ -84,29 +81,33 @@ class UserProfile extends Block {
           vtype: 'phone',
           vlabel: 'phone-error',
           events: {
-            focus: e => this.handleFocus(e),
-            blur: e => this.handleBlur(e),
+            focus: () => this.handleFocus(),
+            blur: ( )=> this.handleBlur(),
           },  
         })
       },
     });
   }
 
-  handleFocus() {
+  handleFocus(): void {
     this.validate();
   }
 
-  handleBlur() {
+  handleBlur(): void {
     this.validate();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  handleClickRoot(e) {}
-
-  handleClickButton(e) {
+  handleClickButton(e: Event): void {
     e.preventDefault();
     this.validate();
-    const formData: any = {};
+    const formData: {
+      first_name?: string,
+      second_name?: string,
+      display_name?: string,
+      email?: string,
+      login?: string,
+      phone?: string,
+    } = {};
     const keys = ['first_name', 'second_name', 'display_name', 'email', 'login', 'phone'];
     keys.forEach(key => {
       const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
@@ -114,7 +115,7 @@ class UserProfile extends Block {
     });
   }
 
-  render() {
+  render(): HTMLElement {
     return template({
       saveButton: this.props.chld.saveButton.render(),
       firstName: this.props.chld.firstName.render(),
