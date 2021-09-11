@@ -180,14 +180,14 @@ class Block {
   show(): void {
     const elem = this.getContent();
     if (elem) {
-      elem.style.display = 'block';
+      elem.classList.remove('hidden');
     }
   }
 
   hide(): void {
     const elem = this.getContent();
     if (elem) {
-      elem.style.display = 'none';
+      elem.classList.add('hidden');
     }
   }
 
