@@ -1,0 +1,9 @@
+/dist
+**/*.min.js
+**/*.hbs
+**/*.css
+**/*.md
+/node_modules
+/static
+**/*.toml
+

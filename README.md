@@ -10,8 +10,10 @@
 
 - Parcel для сборки проекта
 - Шаблонизатор handlebars
-- Postcss
-- Связь parcel и handlebars посредством плагина parcel-plugin-handlebars
+- Less, Postcss для стилизации
+- Typescript
+- Eslint и Stylelint
+- Рендеринг страниц на стороне клиента
 
 ## UI
 
@@ -21,4 +23,5 @@
 
 - `npm run build` — сборка проекта,
 - `npm run dev` — запуск версии для разработчика,
-- `npm surn start` — запуск версии для пользоваталя.
+- `npm run start` — запуск версии для пользоваталя,
+- `npm run lint` — запуск проверки проекта.
