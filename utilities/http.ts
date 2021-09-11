@@ -1,38 +1,37 @@
 
-type Methods = {
-  GET: string,
-  PUT: string,
-  POST: string,
-  DELETE: string,
+enum METHOD {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE'
 }
+
+type Options = {
+  method: METHOD,
+  data?: any,
+  headers?: Record<string, any>,
+};
 
 class HTTPTransport {
 
-  static METHODS: Methods = {
-    GET: 'GET',
-    PUT: 'PUT',
-    POST: 'POST',
-    DELETE: 'DELETE',
-  };
-
-  get = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url + this.queryStringify(options.data), {...options, method: HTTPTransport.METHODS.GET});
+  get = (url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> => {
+    return this.request(url + this.queryStringify(options.data), {...options, method: METHOD.GET});
   };
   put = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: HTTPTransport.METHODS.PUT});
+    return this.request(url, {...options, method: METHOD.PUT});
   };
   post = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: HTTPTransport.METHODS.POST});
+    return this.request(url, {...options, method: METHOD.POST});
   };
   delete = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: HTTPTransport.METHODS.DELETE});
+    return this.request(url, {...options, method: METHOD.DELETE});
   };
 
   queryStringify(data: Record<string, string>): string {
     if (!data) {
       return '';
     }
-    if (typeof data !== 'object') {
+    if (Object.prototype.toString.call(data) !== "[object Object]") {
       throw new Error('Data must be object');
     }
     const str: Array<string> = [];
@@ -44,7 +43,7 @@ class HTTPTransport {
     return res;
   }
 
-  request = (url: string, options: Record<string, any>): Promise<XMLHttpRequest> => {
+  request = (url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> => {
 
     const { method, data, headers } = options;
     return new Promise((resolve, reject) => {
@@ -59,14 +58,18 @@ class HTTPTransport {
       }
 
       xhr.onload = function() {
-        resolve(xhr);
+        if (xhr.status >= 200 && xhr.status <= 299) {
+          resolve(xhr);
+        } else {
+          reject();
+        }
       }
 
       xhr.onabort = reject;
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === HTTPTransport.METHODS.GET || !data) {
+      if (method === METHOD.GET || !data) {
         xhr.send();
       } else {
         xhr.send(data);
