@@ -6,7 +6,7 @@ import { template } from './template';
 class ChangePassword extends Block {
   constructor() {
     super('div', {
-      chld: {
+      children: {
         saveButton: new Button({
           className: 'primary-button',
           child: 'Update profile settings',
@@ -67,9 +67,9 @@ class ChangePassword extends Block {
 
   render(): HTMLElement {
     return template({
-      saveButton: this.props.chld.saveButton.render(),
-      oldPassword: this.props.chld.oldPassword.render(),
-      newPassword: this.props.chld.newPassword.render(),
+      saveButton: this.props.children.saveButton.render(),
+      oldPassword: this.props.children.oldPassword.render(),
+      newPassword: this.props.children.newPassword.render(),
     });
   }
 

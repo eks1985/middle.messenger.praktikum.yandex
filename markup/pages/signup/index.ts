@@ -6,7 +6,7 @@ import { template } from './template';
 class SignUp extends Block {
   constructor() {
     super('div', {
-      chld: {
+      children: {
         saveButton: new Button({
           className: 'primary-button mt-2',
           child: 'Sign Up',
@@ -133,14 +133,14 @@ class SignUp extends Block {
 
   render(): HTMLElement {
     return template({
-      saveButton: this.props.chld.saveButton.render(),
-      firstName: this.props.chld.firstName.render(),
-      secondName: this.props.chld.secondName.render(),
-      email: this.props.chld.email.render(),
-      login: this.props.chld.login.render(),
-      phone: this.props.chld.phone.render(),
-      password: this.props.chld.password.render(),
-      repeatPassword: this.props.chld.repeatPassword.render(),
+      saveButton: this.props.children.saveButton.render(),
+      firstName: this.props.children.firstName.render(),
+      secondName: this.props.children.secondName.render(),
+      email: this.props.children.email.render(),
+      login: this.props.children.login.render(),
+      phone: this.props.children.phone.render(),
+      password: this.props.children.password.render(),
+      repeatPassword: this.props.children.repeatPassword.render(),
     });
   }
 

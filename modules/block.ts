@@ -62,10 +62,10 @@ class Block {
   }
 
   addChildEvents(): void {
-    const { chld = {}} = this.props;
-    const chldKeys = Object.keys(chld);
+    const { children = {}} = this.props;
+    const chldKeys = Object.keys(children);
     chldKeys.forEach(childKey => {
-      const child = chld[childKey];
+      const child = children[childKey];
       if (child.props.events) {
         const childNode = document.getElementById(child.props.id);
         if (childNode) {

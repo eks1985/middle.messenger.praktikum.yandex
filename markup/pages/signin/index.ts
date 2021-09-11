@@ -6,7 +6,7 @@ import { template } from './template';
 class SignIn extends Block {
   constructor() {
     super('div', {
-      chld: {
+      children: {
         signinButton: new Button({
           className: 'primary-button mt-2',
           child: 'Sign In',
@@ -71,9 +71,9 @@ class SignIn extends Block {
 
   render(): HTMLElement {
     return template({
-      signinButton: this.props.chld.signinButton.render(),
-      login: this.props.chld.login.render(),
-      password: this.props.chld.password.render()
+      signinButton: this.props.children.signinButton.render(),
+      login: this.props.children.login.render(),
+      password: this.props.children.password.render()
     });
   }
 
