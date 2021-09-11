@@ -1,5 +1,12 @@
 @primary-color: #E1001A;
 @border-color: #ddd;
+@label-color: #555;
+@white-backgound: #fafafa;
+@light-gray: #ccc;
+@very-light-gray: #eee;
+@in-msg-background: #b3e5fc;
+@out-msg-background: #c8e6c9;
+@white: #fff;
 
 .chats-container {
   font-size: 14px;
@@ -14,7 +21,7 @@
   min-width: 300px;
   width: 40%;
   border: 1px solid @border-color;
-  background: #fafafa;
+  background: @white-backgound;
 }
 
 .chats-list {
@@ -71,7 +78,7 @@
   height: 42px;
   width: 42px;
   border-radius: 50%;
-  background-color: #eee;
+  background-color: @very-light-gray;
   border: 1px solid @border-color;
 }
 
@@ -80,11 +87,11 @@
 }
 
 .chat-list-item-last {
-  color: #555;
+  color: @label-color;
 }
 
 .chat-list-item-time {
-  color: #555;
+  color: @label-color;
   font-size: 11px;
 }
 
@@ -98,7 +105,7 @@
   border-radius: 50%;
   width: 20px;
   height: 20px;
-  color: #fff;
+  color: @white;
 }
 
 .conversation-container {
@@ -147,7 +154,7 @@
   height: 3px;
   width: 4px;
   border-radius: 50%;
-  background: #ccc;
+  background: @light-gray;
   margin-top: 3px;
 }
 
@@ -162,7 +169,7 @@
 
 .in.msg {
   margin-right: 35%;
-  background: #b3e5fc;
+  background: @in-msg-background;
   min-width: 36px;
   border-radius: 8px;
   padding: 8px;
@@ -170,7 +177,7 @@
 
 .out.msg {
   margin-left: 35%;
-  background: #c8e6c9;
+  background: @out-msg-background;
   min-width: 36px;
   border-radius: 8px;
   padding: 8px;
@@ -179,7 +186,7 @@
 .msg-time {
   text-align: right;
   font-size: 11px;
-  color: #555;
+  color: @label-color;
 }
 
 .msg-read {
@@ -187,11 +194,11 @@
 }
 
 .chat-active {
-  background: #eee;
+  background: @very-light-gray;
 }
 
 .chats-msg-send-button {
-  border: 1px solid #ccc;
+  border: 1px solid @light-gray;;
   border-radius: 4px;
   cursor: pointer;
 }
