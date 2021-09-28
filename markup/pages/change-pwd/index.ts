@@ -4,7 +4,7 @@ import Input from '../../components/input';
 import { template } from './template';
 
 class ChangePassword extends Block {
-  constructor() {
+  constructor(store) {
     super('div', {
       children: {
         saveButton: new Button({
@@ -40,7 +40,7 @@ class ChangePassword extends Block {
           },  
         })
       },
-    });
+    }, store);
   }
 
   handleFocus(): void {

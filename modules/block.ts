@@ -30,7 +30,7 @@ class Block {
   eventBus: () => EventBus;
   validator: () => Validator;
 
-  constructor(tagName = 'div', props = {}) {
+  constructor(tagName = 'div', props = {}, store) {
     const eventBus = new EventBus();
     const validator = new Validator();
     this._meta = {
@@ -39,6 +39,7 @@ class Block {
     };
     
     this.props = this._makePropsProxy(props);
+    this.store = store;
     this.eventBus = () => eventBus;
     this.validator = () => validator;
     this._registerEvents(eventBus);

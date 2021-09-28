@@ -4,7 +4,7 @@ import Input from '../../components/input';
 import { template } from './template';
 
 class UserProfile extends Block {
-  constructor() {
+  constructor(store) {
     super('div', {
       children: {
         saveButton: new Button({
@@ -88,7 +88,7 @@ class UserProfile extends Block {
           },  
         })
       },
-    });
+    }, store);
   }
 
   handleFocus(): void {
@@ -115,6 +115,7 @@ class UserProfile extends Block {
       const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
       formData[key] = inputValue;
     });
+    this.store.incFoo();
   }
 
   render(): HTMLElement {

@@ -72,7 +72,8 @@ class HTTPTransport {
       if (method === METHOD.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(data);
+        console.log('xhr.send(data)', data);
+        xhr.send(JSON.stringify(data));
       }
 
     });

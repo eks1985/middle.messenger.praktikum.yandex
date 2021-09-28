@@ -26,7 +26,7 @@ const markup = `
       <span>
         Don't have an account yet?
       </span>
-      <a class='link' href='/signup'>Sign up</a>
+      <a class='link' href='/sign-up'>Sign up</a>
     </div>
   </form>
 `;

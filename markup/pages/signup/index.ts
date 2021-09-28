@@ -2,9 +2,11 @@ import Block from '../../../modules/block';
 import Button from '../../components/button';
 import Input from '../../components/input';
 import { template } from './template';
+import HTTPTransport from '../../../utilities/http';
+import router from '../../../index';
 
 class SignUp extends Block {
-  constructor() {
+  constructor(store) {
     super('div', {
       children: {
         saveButton: new Button({
@@ -100,7 +102,7 @@ class SignUp extends Block {
           },  
         })
       },
-    });
+    }, store);
   }
 
   handleFocus(): void {
@@ -128,10 +130,33 @@ class SignUp extends Block {
       const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
       formData[key] = inputValue;
     });
-    console.log('form data', formData);
+    // const formData1 = {
+    //   first_name: 'Kirill',
+    //   second_name: 'Efimov  ',
+    //   email: 'eks1985@yandex.ru',
+    //   login: 'kefimov',
+    //   phone: '+79178308888',
+    //   password: 'Maestra12!',
+    // }
+    // const http = new HTTPTransport();
+    // http.post(
+    //   'https://ya-praktikum.tech/api/v2/auth/signup',
+    //   {
+    //     data: formData1,
+    //     headers: {
+    //       'accept': 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //   },
+    // ).then(res => {
+    //   console.log('res', res)
+    // });
+    router.go('/settings');
+
   }
 
   render(): HTMLElement {
+    console.log('profile render, store', this.store);
     return template({
       saveButton: this.props.children.saveButton.render(),
       firstName: this.props.children.firstName.render(),

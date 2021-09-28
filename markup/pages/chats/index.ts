@@ -4,7 +4,7 @@ import data from '../../data/dummy-data.json';
 
 export default class Button extends Block {
   constructor() {
-    super('div');
+    super('div', , store);
   }
 
   render(): HTMLElement {
