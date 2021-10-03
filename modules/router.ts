@@ -1,6 +1,8 @@
 
 import { render } from '../modules/block';
 import Page404 from '../markup/pages/404';
+import store from '../modules/store';
+
 
 function isEqual(lhs, rhs) {
   return lhs === rhs;
@@ -113,4 +115,4 @@ class Router {
   }
 }
 
-export default Router;
+export default new Router('.app', store);

@@ -1,7 +1,9 @@
 import Block from '../../../modules/block';
 import Button from '../../components/button';
 import Input from '../../components/input';
+import Link from '../../components/link';
 import { template } from './template';
+import authController from '../../../controllers/auth';
 
 class UserProfile extends Block {
   constructor(store) {
@@ -12,7 +14,15 @@ class UserProfile extends Block {
           child: 'Update profile settings',
           id: 'update-profile-settings-button',
           events: {
-            click: (e: Event) => this.handleClickButton(e),
+            click: (e: Event) => this.handleSave(e),
+          },
+        }),
+        logoutButton: new Link({
+          className: 'primary-link mt-2',
+          child: 'Logout',
+          id: 'logout-button',
+          events: {
+            click: (e: Event) => this.handleLogout(e),
           },
         }),
         firstName: new Input({
@@ -99,7 +109,13 @@ class UserProfile extends Block {
     this.validate();
   }
 
-  handleClickButton(e: Event): void {
+  handleLogout(e: Event): void {
+    console.log('logout handler');
+    e.preventDefault();
+    authController.logout();
+  }
+
+  handleSave(e: Event): void {
     e.preventDefault();
     this.validate();
     const formData: {
@@ -115,12 +131,14 @@ class UserProfile extends Block {
       const inputValue = (<HTMLInputElement>document.getElementById(key)).value;
       formData[key] = inputValue;
     });
-    this.store.incFoo();
+    console.log('handle save');
   }
 
   render(): HTMLElement {
+    console.log('profile state', this.store.getState());
     return template({
       saveButton: this.props.children.saveButton.render(),
+      logoutButton: this.props.children.logoutButton.render(),
       firstName: this.props.children.firstName.render(),
       secondName: this.props.children.secondName.render(),
       displayName: this.props.children.displayName.render(),

@@ -5,11 +5,12 @@ import Chats from './markup/pages/chats';
 import Profile from './markup/pages/profile';
 import ChangePwd from './markup/pages/change-pwd';
 import Page404 from './markup/pages/404';
-import Store from './modules/store';
+import store from './modules/store';
+import router from './modules/router';
 
-const store = new Store();
-store.incFoo();
-const router = new Router('.app', store);
+// const store = new Store();
+// store.incFoo();
+// const router = new Router('.app', store);
 
 router
   .use('/', SignIn)
@@ -17,4 +18,4 @@ router
   .use('/settings', Profile)
   .start();
 
-export default router;
+// export default router;

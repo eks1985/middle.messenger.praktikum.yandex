@@ -60,10 +60,10 @@ const markup = `
       <a class='link' href='/change-pwd'>Change password</a>
     </div>
     <div class='row center'>
-      {{{ saveButton }}}
+      {{{ logoutButton }}}
     </div>
     <div class='row center'>
-      <a class='link' href='#'>Logout</a>
+      {{{ saveButton }}}
     </div>
   </form>
 `;

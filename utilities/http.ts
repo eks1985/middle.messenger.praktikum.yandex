@@ -7,24 +7,32 @@ enum METHOD {
 }
 
 type Options = {
-  method: METHOD,
+  method?: METHOD,
   data?: any,
   headers?: Record<string, any>,
+  withCredentials: boolean,
 };
 
 class HTTPTransport {
 
-  get = (url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> => {
-    return this.request(url + this.queryStringify(options.data), {...options, method: METHOD.GET});
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+
+  get = (endpoint: string, options: Options = { method: METHOD.GET }): Promise<Response> => {
+    return this.request(`${HTTPTransport.API_URL}${endpoint}` + this.queryStringify(options.data), {...options, method: METHOD.GET});
   };
-  put = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: METHOD.PUT});
+  put = (endpoint: string, options: Record<string, any> = {}): Promise<Response> => {
+    return this.request(`${HTTPTransport.API_URL}${endpoint}`, {...options, method: METHOD.PUT});
   };
-  post = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: METHOD.POST});
+  post = (endpoint: string, options: Record<string, any> = {}): Promise<Response> => {
+    return this.request(`${HTTPTransport.API_URL}${endpoint}`, {...options, method: METHOD.POST});
   };
-  delete = (url: string, options: Record<string, any> = {}): Promise<XMLHttpRequest> => {
-    return this.request(url, {...options, method: METHOD.DELETE});
+  delete = (endpoint: string, options: Record<string, any> = {}): Promise<Response> => {
+    return this.request(`${HTTPTransport.API_URL}${endpoint}`, {...options, method: METHOD.DELETE});
   };
 
   queryStringify(data: Record<string, string>): string {
@@ -43,9 +51,10 @@ class HTTPTransport {
     return res;
   }
 
-  request = (url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> => {
+  request = (url: string, options: Options = { method: METHOD.GET }): Promise<Response> => {
 
     const { method, data, headers } = options;
+    
     return new Promise((resolve, reject) => {
 
       const xhr: XMLHttpRequest = new XMLHttpRequest();
@@ -69,10 +78,14 @@ class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
+
       if (method === METHOD.GET || !data) {
         xhr.send();
       } else {
-        console.log('xhr.send(data)', data);
         xhr.send(JSON.stringify(data));
       }
 
